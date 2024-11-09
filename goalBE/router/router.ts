@@ -9,6 +9,7 @@ import {
   createGoal,
   getAllGoals,
   updateOneGoalStatus,
+  getOneGoalData,
 } from "../controller/goalController";
 
 const router: any = Router();
@@ -22,7 +23,11 @@ router.route("/login-user").post(loginUser);
 // goal endpoints
 
 router.route("/update-goal-status/:goalID").patch(updateOneGoalStatus);
+
+router.route("/read-one-goal/:goalID").get(getOneGoalData);
+
 router.route("/create-goal").post(createGoal);
+
 router.route("/get-all-goal").get(getAllGoals);
 
 export default router;

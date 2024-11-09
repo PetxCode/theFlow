@@ -6,9 +6,9 @@ export const createGoal = async (
   res: Response
 ): Promise<Response> => {
   try {
-    const { title, duration } = req.body;
+    const { title, duration, description } = req.body;
 
-    const user = await gaolModel.create({ title, duration });
+    const user = await gaolModel.create({ title, description, duration });
 
     return res.status(201).json({
       message: "goal created",
@@ -63,6 +63,29 @@ export const updateOneGoalStatus = async (
     return res.status(201).json({
       message: "goal updated",
       status: 201,
+      data: goal,
+    });
+  } catch (error: any) {
+    return res.status(404).json({
+      message: "Error",
+      data: error.message,
+      status: 404,
+    });
+  }
+};
+
+export const getOneGoalData = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  try {
+    const { goalID } = req.params;
+
+    const goal = await gaolModel.findById(goalID);
+
+    return res.status(201).json({
+      message: "goal updated",
+      status: 200,
       data: goal,
     });
   } catch (error: any) {

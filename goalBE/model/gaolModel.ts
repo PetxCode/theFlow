@@ -3,6 +3,7 @@ import { Document, model, models, Schema } from "mongoose";
 interface iGoal {
   title: string;
   duration: string;
+  description: string;
   status: string;
 }
 
@@ -14,6 +15,9 @@ const goalModel = new Schema(
       type: String,
     },
     duration: {
+      type: String,
+    },
+    description: {
       type: String,
     },
     status: {
